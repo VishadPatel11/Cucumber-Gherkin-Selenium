@@ -1,17 +1,22 @@
 package stepDefinition;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import org.junit.Assert;
+
+import io.cucumber.datatable.*;
+
 
 public class Test_Steps {
 	public static WebDriver driver;
@@ -21,7 +26,7 @@ public class Test_Steps {
 		System.setProperty("webdriver.chrome.driver","C:\\Selenium Project\\Drivers\\chromedriver.exe");
 		driver = new ChromeDriver();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		driver.get("https://xyz.com/login");
+		driver.get("https://xat-netxinvestor.bnymellon.com/web/netxinvestor/login");
 		
 	}
 
@@ -33,6 +38,21 @@ public class Test_Steps {
 		
 	}
 
+	@When("user enters Credentials")
+	public void user_enters_Credentials(DataTable usercredentials) throws Throwable {
+	    // Write code here that turns the phrase above into concrete actions
+	    List<List<String>> data = usercredentials.cells();
+		
+		// For automatic transformation, change DataTable to one of
+	    driver.findElement(By.id("dijit_form_ValidationTextBox_0")).sendKeys(data.get(0).get(0));
+	    driver.findElement(By.id("dijit_form_ValidationTextBox_1")).sendKeys(data.get(0).get(1));
+	    driver.findElement(By.id("dijit_form_ValidationTextBox_2")).sendKeys(data.get(0).get(2));
+	   
+	    
+	}
+	
+	
+/*	
 	@When("^user enters \"([^\"]*)\" and \"([^\"]*)\" and \"([^\"]*)\"$")
 	public void user_enters_ibd_and_username_and_password(String IBD, String username, String password) throws Throwable {
 	    // Express the Regexp above with the code you wish you had
@@ -43,6 +63,7 @@ public class Test_Steps {
 		
 		
 	}
+*/
 
 	@When("^user clicks Continue button$")
 	public void user_clicks_Continue_button() throws Throwable {
