@@ -15,6 +15,6 @@ Scenario Outline: Verify that user is able to login with a valid username and pa
 	Then Logout link is displayed
 	
 	Examples: 
-			|IBD|username |password|
-			|511|vishadxat|Password0123|
-			|3cr|vishadxat|Password01234|
+			|IBD|username |	password    |
+			|511|vishad   |Password0123 |
+			|3cr|vishad   |Password01234|
